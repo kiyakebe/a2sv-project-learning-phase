@@ -44,8 +44,14 @@ Extract the contents to your desired directory.
 - Edit or delete tasks using the respective buttons next to each task.
 ## Demo
 
+- This the screen we see when we open the app first 
 ![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-1%20todo-app/demo-images/demo-1.png)
 
+- This is the screen we seen after adding our todos
 ![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-1%20todo-app/demo-images/demo-2.png)
 
+- This the screen we see when we edit our todos
 ![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-1%20todo-app/demo-images/demo-3.png)
+
+
+### Everything happend on the saame page. There is no other routes in this todo app.
