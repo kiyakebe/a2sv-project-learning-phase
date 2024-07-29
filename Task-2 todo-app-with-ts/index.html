@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">My ToDo</h1>
+      <form action="">
+        <input type="text" placeholder="New Task" id="task_input" />
+        <button type="submit" id="submit_btn">Add Task</button>
+      </form>
+      <div class="task-container">
+        <!-- If the taks doesn't exists -->
+        <div id="no_task">
+          <div class="not-task">
+            <h1>No Tasks Yet</h1>
+          </div>
+        </div>
+        <!-- If the taks exists -->
+        <div class="todos" id="todos"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
