@@ -27,6 +27,28 @@ const removeTodo = () => {
         main();
     });
 };
+const editTask = () => {
+    readWrite.question("Pleade enter the id You want to update: ", (editId) => {
+        let found = false;
+        for (let i = 0; i < todos.length; i++) {
+            if (todos[i].taskId == editId) {
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            readWrite.question("New value: ", (value) => {
+                todos = todos.map((todo) => todo.taskId == editId ? Object.assign(Object.assign({}, todo), { taskName: value }) : todo);
+                console.log(`Updated task with id: ${editId}`);
+                main();
+            });
+        }
+        else {
+            console.log(`There is no task with Id ${editId}!`);
+            main();
+        }
+    });
+};
 const displyTodos = () => {
     let max = 0;
     for (let i = 0; i < todos.length; i++) {
@@ -47,8 +69,9 @@ const displyTodos = () => {
 const displyMenu = () => {
     let commands = [
         "1. Add New Task",
-        "2. Remove Task",
-        "3. Disply Tasks",
+        "2. Edit Tasks",
+        "3. Remove Task",
+        "4. Disply Tasks",
     ];
     console.log(" ");
     for (let i = 0; i < commands.length; i++) {
@@ -58,15 +81,18 @@ const displyMenu = () => {
 };
 const main = () => {
     displyMenu();
-    readWrite.question("Please slect from the menu: ", (response) => {
+    readWrite.question("Please Select from the menu: ", (response) => {
         switch (parseInt(response)) {
             case 1:
                 addTodo();
                 break;
             case 2:
-                removeTodo();
+                editTask();
                 break;
             case 3:
+                removeTodo();
+                break;
+            case 4:
                 displyTodos();
                 break;
             default:
@@ -77,6 +103,5 @@ const main = () => {
 };
 (() => {
     console.log("Welcome - My Todo");
-    console.log(" ");
     main();
 })();
