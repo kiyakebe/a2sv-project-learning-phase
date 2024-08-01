@@ -12,7 +12,8 @@
     "react": "^18.2.0",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18.2.0",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "task-4-todo-app-react-ts": "file:"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
