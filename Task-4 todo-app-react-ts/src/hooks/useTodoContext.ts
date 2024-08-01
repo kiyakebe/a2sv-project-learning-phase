@@ -7,6 +7,8 @@ const useTodoContext = (): TodoContextType => {
 
   if (!contextValue) {
     throw new Error("useDahsboardContext must be used with the dahsboard");
+  } else if (!contextValue.tasks) {
+    throw new Error("useDahsboardContext must be used with the dahsboard");
   }
 
   return contextValue;

@@ -11,6 +11,11 @@ const todoReducer = (state: Todo[], action: Action): Todo[] => {
       return state.map((task) =>
         task.id == action.payload.id ? action.payload : task
       );
+    case "UPDATE_STATUS":
+      return state.map((task) =>
+        task.id == action.payload ? {...task, completed: !task.completed } : task
+      );
+
     default:
       return state;
   }

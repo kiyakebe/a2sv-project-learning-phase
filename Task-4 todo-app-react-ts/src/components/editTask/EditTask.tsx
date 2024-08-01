@@ -1,37 +1,33 @@
 import categoryOption from "../../assets/category.json";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import useTodoContext from "../../hooks/useTodoContext";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { Todo } from "../../types";
+import { extractEditableValue } from "../../utils/utils";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EditTask = () => {
-  const { task } = useParams();
-  console.log("this is me", task);
+  const { taskId } = useParams();
+  const { tasks, dispatch } = useTodoContext();
+  const navigate = useNavigate()
 
-  
-  const { dispatch } = useTodoContext();
+  const currTask = extractEditableValue(tasks, parseInt(taskId as string));
 
-  // const taskName = taskName ? taskName : ""
-  
-  const [taskName, setTaskName] = useState("");
-  const [category, setCategory] = useState("");
-  const [date, setDate] = useState("");
-  const [completed, setCompleted] = useState(Boolean);
-
-  // useEffect(() => {
-  //   setTaskName(taskName as string);
-  //   setCategory(category as string);
-  //   setDate(date as string);
-  //   setCompleted(completed);
-  // }, []);
+  const [taskName, setTaskName] = useState(currTask.taskName);
+  const [category, setCategory] = useState(currTask.category);
+  const [date, setDate] = useState(currTask.date);
+  const [completed, setCompleted] = useState(currTask.completed);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const current = new Date();
+    
+    const toast_alert = (message: string) =>
+      toast.success(message, { theme: "light", autoClose: 2000 });
 
     const newTodo: Todo = {
-      id: parseInt(task as string),
+      id: parseInt(taskId as string),
       taskName: taskName,
       completed: completed,
       date: date,
@@ -39,13 +35,16 @@ const EditTask = () => {
     };
 
     dispatch({ type: "UPDATE_TASK", payload: newTodo });
+    toast_alert("Updated task!")
+    navigate('/')
   };
 
   return (
     <div className="w-[1000%] px-10 py-5">
-      <h1 className="text-4xl mb-5 font-medium">Edit Task</h1>
+      <Link to={"../"}>Back</Link>
+      <h1 className="mb-5 text-4xl font-medium">Edit Task</h1>
 
-      <form className="mx-auto w-100 mt-10" onSubmit={(e) => handleSubmit(e)}>
+      <form className="mx-auto mt-10 w-100" onSubmit={(e) => handleSubmit(e)}>
         <div className="mb-5">
           <label
             htmlFor="task"
@@ -72,6 +71,7 @@ const EditTask = () => {
           </label>
           <select
             id="countries"
+            value={category}
             onChange={(e) => setCategory(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
@@ -94,6 +94,7 @@ const EditTask = () => {
           <input
             type="date"
             id="date"
+            value={date}
             onChange={(e) => setDate(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />

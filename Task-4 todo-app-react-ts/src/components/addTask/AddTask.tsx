@@ -5,10 +5,12 @@ import useTodoContext from "../../hooks/useTodoContext";
 import { Todo } from "../../types";
 import { Link, useNavigate } from "react-router-dom";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const AddTask = () => {
   const { dispatch } = useTodoContext();
-
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const taskNameRef = useRef<HTMLInputElement>(null);
   const categoryRef = useRef<HTMLSelectElement>(null);
@@ -17,13 +19,19 @@ const AddTask = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const newTaskName = taskNameRef.current?.value;
-    const selectedCategory = categoryRef.current?.value;
-    const dueDate = dueDateRef.current?.value;
+    const toast_alert = (message: string) =>
+      toast.success(message, { theme: "light", autoClose: 2000 });
+
+    const newTaskName = taskNameRef.current?.value
+      ? taskNameRef.current.value
+      : "";
+    const selectedCategory = categoryRef.current?.value
+      ? categoryRef.current.value
+      : "";
+    const dueDate = dueDateRef.current?.value ? dueDateRef.current.value : "";
     const completed = false;
 
     const current = new Date();
-    
 
     const newTodo: Todo = {
       id: current.getTime(),
@@ -34,17 +42,18 @@ const AddTask = () => {
     };
 
     dispatch({ type: "ADD_TASK", payload: newTodo });
-    
-    // navigate("./");
+    toast_alert("Todo Created!");
 
+    navigate("/");
   };
 
   return (
     <div className="w-[1000%] px-10 py-5">
+      {/* <ToastContainer position="top-center" theme="colored" /> */}
       <Link to={"../"}>Back</Link>
-      <h1 className="text-4xl mb-5 font-medium">Add Task</h1>
+      <h1 className="mb-5 text-4xl font-medium">Add Task</h1>
 
-      <form className="mx-auto w-100 mt-10" onSubmit={(e) => handleSubmit(e)}>
+      <form className="mx-auto mt-10 w-100" onSubmit={(e) => handleSubmit(e)}>
         <div className="mb-5">
           <label
             htmlFor="task"

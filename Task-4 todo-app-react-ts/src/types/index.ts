@@ -1,9 +1,9 @@
 export interface Todo {
   id: number;
-  taskName: string | undefined;
+  taskName: string;
   completed: boolean;
-  date: string | undefined;
-  category: string | undefined;
+  date: string;
+  category: string;
 }
 
 export interface Category {
@@ -17,7 +17,8 @@ export interface TaskTime {
 export type Action =
   | { type: "ADD_TASK"; payload: Todo }
   | { type: "DELETE_TASK"; payload: number }
-  | { type: "UPDATE_TASK"; payload: Todo };
+  | { type: "UPDATE_TASK"; payload: Todo }
+  | { type: "UPDATE_STATUS"; payload: number };
 
 export interface TodoContextType {
   tasks: Todo[] | undefined;

@@ -46,21 +46,21 @@ export const filterTodos = (
   }
 };
 
-// export const extractEditableValue = (tasks: Todo[], id: number): Todo => {
+export const extractEditableValue = (tasks: Todo[] | undefined, id: number | undefined): Todo => {
 
-//   if (tasks) {
-//     for (let i = 0; i < tasks?.length; i++) {
-//       if (tasks[i].id === id) {
-//         return tasks[i];
-//       }
-//     }
-//   }
+  if (tasks && id) {
+    for (let i = 0; i < tasks?.length; i++) {
+      if (tasks[i].id === id) {
+        return tasks[i];
+      }
+    }
+  }
 
-//   return {
-//     id: new Date().getTime(),
-//     taskName: "d",
-//     completed: false,
-//     date: new Date().getFullYear().toString(),
-//     category: "PERSONAL_TASKS",
-//   };
-// };
+  return {
+    id: new Date().getTime(),
+    taskName: "d",
+    completed: false,
+    date: new Date().getFullYear().toString(),
+    category: "PERSONAL_TASKS",
+  };
+};

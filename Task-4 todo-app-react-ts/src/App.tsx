@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<Dashboard />}>
             <Route index element={<ToDo />} />
             <Route path="add-task" element={<AddTask />} />
-            <Route path="edit-task/:task" element={<EditTask />} />
+            <Route path="edit-task/:taskId" element={<EditTask />} />
           </Route>
         </Routes>
       </Router>
