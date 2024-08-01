@@ -1,48 +1,49 @@
-import { FormEvent, useRef } from "react";
-import "react-datepicker/dist/react-datepicker.css";
-import category from "../../assets/category.json";
+import categoryOption from "../../assets/category.json";
+import { useParams } from "react-router-dom";
 import useTodoContext from "../../hooks/useTodoContext";
+import { FormEvent, useEffect, useState } from "react";
 import { Todo } from "../../types";
-import { Link, useNavigate } from "react-router-dom";
 
-const AddTask = () => {
+const EditTask = () => {
+  const { task } = useParams();
+  console.log("this is me", task);
+
+  
   const { dispatch } = useTodoContext();
 
-  // const navigate = useNavigate();
+  // const taskName = taskName ? taskName : ""
+  
+  const [taskName, setTaskName] = useState("");
+  const [category, setCategory] = useState("");
+  const [date, setDate] = useState("");
+  const [completed, setCompleted] = useState(Boolean);
 
-  const taskNameRef = useRef<HTMLInputElement>(null);
-  const categoryRef = useRef<HTMLSelectElement>(null);
-  const dueDateRef = useRef<HTMLInputElement>(null);
+  // useEffect(() => {
+  //   setTaskName(taskName as string);
+  //   setCategory(category as string);
+  //   setDate(date as string);
+  //   setCompleted(completed);
+  // }, []);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const newTaskName = taskNameRef.current?.value;
-    const selectedCategory = categoryRef.current?.value;
-    const dueDate = dueDateRef.current?.value;
-    const completed = false;
-
     const current = new Date();
-    
 
     const newTodo: Todo = {
-      id: current.getTime(),
-      taskName: newTaskName,
+      id: parseInt(task as string),
+      taskName: taskName,
       completed: completed,
-      date: dueDate,
-      category: selectedCategory,
+      date: date,
+      category: category,
     };
 
-    dispatch({ type: "ADD_TASK", payload: newTodo });
-    
-    // navigate("./");
-
+    dispatch({ type: "UPDATE_TASK", payload: newTodo });
   };
 
   return (
     <div className="w-[1000%] px-10 py-5">
-      <Link to={"../"}>Back</Link>
-      <h1 className="text-4xl mb-5 font-medium">Add Task</h1>
+      <h1 className="text-4xl mb-5 font-medium">Edit Task</h1>
 
       <form className="mx-auto w-100 mt-10" onSubmit={(e) => handleSubmit(e)}>
         <div className="mb-5">
@@ -50,14 +51,15 @@ const AddTask = () => {
             htmlFor="task"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            New Task
+            Update Task
           </label>
           <input
             type="text"
             id="task"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="New Task"
-            ref={taskNameRef}
+            value={taskName}
+            onChange={(e) => setTaskName(e.target.value)}
             required
           />
         </div>
@@ -69,11 +71,11 @@ const AddTask = () => {
             Select Category
           </label>
           <select
-            ref={categoryRef}
             id="countries"
+            onChange={(e) => setCategory(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            {category.map((data) => (
+            {categoryOption.map((data) => (
               <option value={data.name} key={data.id}>
                 {data.name}
               </option>
@@ -91,8 +93,8 @@ const AddTask = () => {
 
           <input
             type="date"
-            ref={dueDateRef}
             id="date"
+            onChange={(e) => setDate(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />
         </div>
@@ -101,11 +103,11 @@ const AddTask = () => {
           type="submit"
           className="bg-slate-700 p-2 rounded-md block w-[100%] text-slate-200"
         >
-          Add Task
+          Update
         </button>
       </form>
     </div>
   );
 };
 
-export default AddTask;
+export default EditTask;
