@@ -48,9 +48,10 @@ const ContactForm = () => {
 
   return (
     <form
-      className="max-w-sm mx-auto bg-slate-50 p-5 py-8 rounded-md w-3/4"
+      className="mx-auto bg-slate-50 p-5 rounded-md w-full lg:w-3/4"
       onSubmit={handleSubmit(onSubmit)}
     >
+      <h2 className="mb-4 font-semibold text-lg">Contact From</h2>
       <div className="mb-5">
         <label
           htmlFor="name"
