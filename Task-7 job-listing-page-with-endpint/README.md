@@ -1,30 +1,62 @@
-# React + TypeScript + Vite
+# Job Opportunities Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+This project is an application that provides users with a platform to browse and explore various job opportunities. The main functionalities include displaying a list of job postings, sorting them by different criteria, and viewing detailed information about each job.
 
-Currently, two official plugins are available:
+## Key Features:
+- **Job Listing**: Displays a list of job opportunities sourced from `/opportunities/search`.
+- **Job Details**: Provides detailed information about each job, fetched from `/opportunities/:id`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Structure
+The project structure follows a typical Next.js layout with a focus on modularity and reusability of components.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
+- **Node.js**: Ensure you have Node.js installed on your machine.
+- **Package Manager**: Use npm or yarn as your package manager.
 
-- Configure the top-level `parserOptions` property like this:
+### Installation
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+1. **Clone the repository**:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+   ```bash
+   git clone https://github.com/kiyakebe/a2sv-project-learning-phase.git
+   cd "Task-7 job-listing-page-with-endpint"
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+### Running the Project
+
+1. **Start the development server**:
+
+   ```bash
+   npm run dev
+   ```
+
+2. **Open your browser** and navigate to [http://localhost:3000](http://localhost:3000) to view the application.
+
+---
+
+
+## Demo Screenshot
+
+1. Landing page
+![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-7%20job-listing-page-with-endpint/demo-image/demo-1.png)
+
+2. Job Opportunity Listing Page
+![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-7%20job-listing-page-with-endpint/demo-image/demo-2.png)
+
+3. Job Opportunity Detail Page
+![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-7%20job-listing-page-with-endpint/demo-image/demo-3.png)
+
+4. Page Not Found
+![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-7%20job-listing-page-with-endpint/demo-image/demo-4.png)
+
+5. Loading State Indicator
+![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-7%20job-listing-page-with-endpint/demo-image/demo-5.png)
