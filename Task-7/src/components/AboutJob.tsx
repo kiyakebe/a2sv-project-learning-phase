@@ -23,7 +23,7 @@ const AboutCard = ({
 
 const AboutJob = ({ id }: { id: string }) => {
   const { data: job } = useGetOpportunityByIdQuery(id);
-  if (!job) return <h1>Data Not Found</h1>;
+  if (!job) return <></>;
   return (
     <div className="w-3/12 shrink-0 grow ">
       <div className="">

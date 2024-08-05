@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGetAllOpportunityQuery } from "../features/api/apiSlice";
 import JobCard from "../components/JobCard";
+import Loading from "./Loading";
 
 export default function Home() {
   const { data: jobs, isLoading, isError } = useGetAllOpportunityQuery();
-
+  const navigate = useNavigate();
   const jobs_cnt = jobs?.data.length;
-  if (isLoading) return <h1>Loading...</h1>;
-  if (isError) return <h1>Server Error...</h1>;
+  if (isLoading) return <Loading />;
+  if (isError) navigate("/notfound");
 
   return (
     <main className="">

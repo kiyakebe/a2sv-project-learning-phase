@@ -1,5 +1,6 @@
 import { useGetOpportunityByIdQuery } from "../features/api/apiSlice";
 import { useNavigate } from "react-router-dom";
+import Loading from "../page/Loading";
 
 const DescriptionCard = ({ description }: { description: string }) => {
   return (
@@ -72,7 +73,7 @@ const Description = ({ id }: { id: string }) => {
   const { isLoading, isError, data: job } = useGetOpportunityByIdQuery(id);
   const navigate = useNavigate()
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Loading />;
   if (isError) navigate('/notfound');
 
   return (
