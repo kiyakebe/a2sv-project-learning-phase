@@ -12,13 +12,13 @@ export default function Home() {
 
   return (
     <main className="">
-      <div className="flex justify-between items-center w-3/4 mx-auto mt-10">
+      <div className="flex items-center justify-between w-3/4 mx-auto mt-10">
         <div>
           <h1 className="text-3xl font-bold text-slate-900">Oppotunities</h1>
-          <p className="text-slate-500 py-2">showing {jobs_cnt} results</p>
+          <p className="py-2 text-slate-500">showing {jobs_cnt} results</p>
         </div>
         <div>
-          <label htmlFor="sort" className="text-slate-500 pr-2">
+          <label htmlFor="sort" className="pr-2 text-slate-500">
             Sorted by:
           </label>
           <select
