@@ -18,8 +18,8 @@ const ResponsibilityCard = ({ resp }: { resp: string }) => {
       <Image
         src="/icons/check.png"
         alt="."
-        width={25}
-        height={20}
+        width={15}
+        height={15}
         className="shrink-0"
       />
       <p className="text-slate-700 text-lg font-epilogue">{resp}</p>

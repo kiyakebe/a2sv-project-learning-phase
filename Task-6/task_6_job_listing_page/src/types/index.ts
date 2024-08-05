@@ -10,7 +10,7 @@ export interface IdealCandidate {
   age: string;
   gender: string;
   traits: string[];
-  title: string
+  title: string;
 }
 
 export interface About {
@@ -27,7 +27,7 @@ export interface JobDetail {
   title: string;
   description: string;
   responsibilities: string[];
-  ideal_candidate: Omit<IdealCandidate, 'title'>;
+  ideal_candidate: Omit<IdealCandidate, "title">;
   when_where: string;
   about: About;
   company: string;
