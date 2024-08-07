@@ -1,3 +1,4 @@
+import { Poppins } from "next/font/google";
 import type { Config } from "tailwindcss";
 
 const config = {
@@ -18,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        'poppins': ["Poppins", "sans-serif"],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

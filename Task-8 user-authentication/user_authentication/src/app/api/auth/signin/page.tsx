@@ -1,3 +1,4 @@
+import AuthProvider from "@/auth/Provider";
 import LoginForm from "@/components/auth/LoginForm";
 import Image from "next/image";
 
@@ -8,7 +9,9 @@ const page = () => {
         <Image src="/login.svg" alt="" width={400} height={400} />
       </div>
       <div className="w-1/2 shrink-0 ">
-        <LoginForm />
+        <AuthProvider>
+          <LoginForm />
+        </AuthProvider>
       </div>
     </div>
   );

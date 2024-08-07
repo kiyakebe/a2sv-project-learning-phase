@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const schema = z.object({
   email: z
@@ -26,7 +28,7 @@ const schema = z.object({
 });
 
 const toast_alert = (message: string) =>
-  toast.success(message, { theme: "light", autoClose: 2000 });
+  toast.error(message, { theme: "light", autoClose: 2000 });
 
 type FormData = z.infer<typeof schema>;
 
@@ -37,9 +39,20 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data);
-    toast_alert("Email sent successfully");
+  const router = useRouter();
+
+  const onSubmit = async (data: FieldValues) => {
+    const result = await signIn("credentials", {
+      redirect: false,
+      email: data?.email,
+      password: data?.password,
+    });
+
+    if (!result?.ok) {
+      toast_alert("Invalid Credentials");
+    } else {
+      router.push("/jobs");
+    }
   };
 
   return (
@@ -47,10 +60,12 @@ const LoginForm = () => {
       className="mx-auto p-5 rounded-md w-full lg:w-7/12 border border-slate-200 "
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h2 className="font-semibold text-center mb-4 text-2xl">Welcome Back,</h2>
-      <span className="w-full mb-4 before:block before:absolute before:-inset-1 before:bottom-[1rem] before:top-[1rem] before:bg-slate-50 relative inline-block">
-        <p className="w-full relative border-b border-slate-300"></p>
-      </span>
+      <h2 className="text-center mb-4 text-3xl font-poppins font-bold text-slate-800">
+        Welcome Back,
+      </h2>
+
+      <p className="w-full border-b-[3px] my-8 relative before:bg-white before:absolute before:w-1/2 before:h-2 before:translate-x-[-50%] before:left-[50%] before:bottom-[-0.2rem]"></p>
+
       <div className="mb-6">
         <label
           htmlFor="name"
@@ -97,7 +112,7 @@ const LoginForm = () => {
       </button>
       <p className="block mb-2 text-sm font-medium text-slate-600">
         Don't have an account?
-        <Link href="/auth/signup" className="ml-3 text-violet-500">
+        <Link href="/api/auth/signup" className="ml-3 text-violet-500">
           Singup
         </Link>
       </p>

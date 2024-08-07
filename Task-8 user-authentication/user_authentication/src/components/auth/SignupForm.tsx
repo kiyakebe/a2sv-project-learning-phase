@@ -10,6 +10,7 @@ import Link from "next/link";
 import axios from "axios";
 
 import { useRouter } from "next/navigation";
+import GoogleButton from "./GoogleButton";
 
 const schema = z
   .object({
@@ -63,8 +64,8 @@ const SignupForm = () => {
       .post("https://akil-backend.onrender.com/signup", data)
       .then((res) => {
         if (res.status === 200) {
-          toast_alert("Signup Successfull");
-          router.push("/auth/emailVerification/" + data.email);
+          toast_alert("Successfull sent OTP!");
+          router.push("/api/auth/emailVerification/" + data.email);
         }
       })
       .catch((err) => {
@@ -77,7 +78,12 @@ const SignupForm = () => {
       className="mx-auto p-5 rounded-md w-full lg:w-7/12 border border-slate-200 bg-white"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h2 className="font-semibold text-center mb-5 text-2xl">Signup Today</h2>
+      <h2 className="text-center mb-5 text-3xl font-poppins font-bold text-slate-800">Signup Today</h2>
+      <GoogleButton />
+      <p className="text-center w-full border-b-[3px] my-8 relative ">
+      <span className="bg-white absolute w-1/2 h-4 translate-x-[-50%] left-[50%] bottom-[-0.2rem]">Or Signup with Email</span>
+      </p>
+
       <div className="mb-5">
         <label
           htmlFor="name"
@@ -164,7 +170,7 @@ const SignupForm = () => {
       </button>
       <p className="block mb-2 text-sm font-medium text-slate-600">
         Alrady have an account?
-        <Link href="/auth/login" className="ml-3 text-violet-500">
+        <Link href="/api/auth/signin" className="ml-3 text-violet-500">
           Login
         </Link>
       </p>

@@ -8,7 +8,6 @@ const layout = ({
   return (
     <div>
       <ToastContainer position="top-center" theme="colored" />
-
       {children}
     </div>
   );

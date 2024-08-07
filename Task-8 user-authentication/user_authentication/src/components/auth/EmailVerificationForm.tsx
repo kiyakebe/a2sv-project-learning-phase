@@ -37,13 +37,13 @@ const EmailVerificationForm = ({ email }: { email: string }) => {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
-    const newData = { email: email.replace('%40','@'), otp: data.pin };
+    const newData = { email: email.replace("%40", "@"), otp: data.pin };
     console.log(newData);
     axios
       .post("https://akil-backend.onrender.com/verify-email", newData)
       .then((res) => {
         console.log(res.data);
-        router.push("/");
+        router.push("/jobs");
       })
       .catch((err) => {
         console.log(err);
@@ -110,7 +110,10 @@ const EmailVerificationForm = ({ email }: { email: string }) => {
       </Form>
 
       <div className="text-sm text-slate-500 mt-4">
-        Didn't receive code?
+        You can request a to{" "}
+        <span className="font-bold text-violet-600"> Resend Code </span>in{" "}
+        <br />
+        <span className="font-bold text-violet-600">0:30</span>
         <a
           className="font-medium text-indigo-500 hover:text-indigo-600"
           href="#0"
