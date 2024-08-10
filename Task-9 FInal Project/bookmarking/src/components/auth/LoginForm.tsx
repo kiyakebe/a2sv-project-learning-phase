@@ -42,6 +42,9 @@ const LoginForm = () => {
   const router = useRouter();
 
   const onSubmit = async (data: FieldValues) => {
+
+    console.log("loginform logindata: ", data)
+
     const result = await signIn("credentials", {
       redirect: false,
       email: data?.email,

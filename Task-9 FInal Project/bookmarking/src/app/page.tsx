@@ -1,4 +1,5 @@
 import Link from "next/link";
+// import Link from "next/link";
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
       </h1>
       <Link
         className="bg-violet-700 text-slate-50 p-3 px-5 my-5 rounded-md"
-        href="/api/auth/signup"
+        href="/jobs"
       >
         Get Started
       </Link>

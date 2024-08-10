@@ -1,10 +1,54 @@
-'use client';
-import { useSession } from "next-auth/react";
+"use client";
+import JobCard from "@/components/JobCard";
+import { Opportunity } from "@/type";
+import Link from "next/link";
 
-const Jobs = () => {
-  const session = useSession();
-  console.log("session", session);
-  return <div>Print Naol kassinet</div>;
+const Jobs = ({ jobs }: { jobs: Opportunity[] }) => {
+  const jobs_cnt = jobs.length;
+
+  return (
+    <main className="">
+      <div className="flex items-center justify-between w-3/4 mx-auto mt-10">
+        <div>
+          <h1 className="text-3xl font-bold text-slate-900">Oppotunities</h1>
+          <p className="py-2 text-slate-500">showing {jobs_cnt} results</p>
+        </div>
+        <div>
+          <label htmlFor="sort" className="pr-2 text-slate-500">
+            Sorted by:
+          </label>
+          <select
+            name="sort"
+            id="countries"
+            className="bg-gray-50 text-slate-900 font-semibold text-sm rounded-lg p-2.5"
+          >
+            <option value="default"> Most Recent </option>
+            <option value="title"> Title </option>
+            <option value="title"> Organization </option>
+          </select>
+        </div>
+      </div>
+
+      {jobs ? (
+        jobs.map((item, index) => {
+          return (
+            <JobCard
+              key={index}
+              id={item.id}
+              isBookmarked={item.isBookmarked}
+              title={item.title}
+              logoUrl={item.logoUrl}
+              description={item.description}
+              orgName={item.orgName}
+              location={item.location}
+            />
+          );
+        })
+      ) : (
+        <div>No Jobs Found</div>
+      )}
+    </main>
+  );
 };
 
 export default Jobs;

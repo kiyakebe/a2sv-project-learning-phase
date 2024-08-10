@@ -7,5 +7,5 @@ export const config = {
     // * - zero or more
     // + - one or more
     // ? - zore or one
-    matcher: ['/jobs', '/jobs/*']
+    matcher: ['/jobs']
 }

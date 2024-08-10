@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { Token, CustomSession } from "@/type";
+// import { Token, CustomSession } from "@/type";
 
 export const authOptions = {
   providers: [
@@ -65,6 +65,7 @@ export const authOptions = {
         token.refreshToken = user.refreshToken;
         token.accessTokenExpires = user.accessTokenExpires;
       }
+
       return token
     },
     async session({ token, session }: { token: any; session: any }) {
