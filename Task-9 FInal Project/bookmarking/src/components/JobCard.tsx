@@ -1,7 +1,15 @@
+"use client";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark as Bookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as unBookmark } from "@fortawesome/free-solid-svg-icons";
+
 import { JobCardType } from "@/type";
 import Link from "next/link";
-import Bookmark from "./bookmarkbtn/Bookmark";
-import UnBookmark from "./bookmarkbtn/UnBookmark";
+
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import axios from "axios";
 
 const ButtonGroup = () => {
   return (
@@ -29,6 +37,20 @@ const JobCard = ({
   description,
   isBookmarked,
 }: JobCardType) => {
+  const session = useSession();
+  const router = useRouter();
+  const accessToken = session?.data?.accessToken;
+
+  axios.interceptors.request.use(
+    (config) => {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+
   return (
     <div className="flex border border-gray-400 p-10 w-3/4 rounded-3xl space-x-5 mx-auto my-8 bg-white">
       <div className="block shrink-0">
@@ -52,7 +74,31 @@ const JobCard = ({
               {location.join(", ")}
             </p>
           </Link>
-          {isBookmarked ? <Bookmark /> : <UnBookmark />}
+          {isBookmarked ? (
+            <button
+              onClick={() => {
+                axios
+                  .delete(`https://akil-backend.onrender.com/bookmarks/${id}`)
+                  .then((res) => {
+                    router.refresh();
+                  });
+              }}
+            >
+              <FontAwesomeIcon icon={unBookmark} />
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                axios
+                  .post(`https://akil-backend.onrender.com/bookmarks/${id}`)
+                  .then((res) => {
+                    router.refresh();
+                  });
+              }}
+            >
+              <FontAwesomeIcon icon={Bookmark} />
+            </button>
+          )}
         </div>
         <p className="text-slate-700 text-sm">{description}</p>
         <ButtonGroup />

@@ -1,10 +1,11 @@
 "use client";
 import JobCard from "@/components/JobCard";
 import { Opportunity } from "@/type";
-import Link from "next/link";
+import { signOut } from "next-auth/react";
 
 const Jobs = ({ jobs }: { jobs: Opportunity[] }) => {
   const jobs_cnt = jobs.length;
+  console.log(jobs)
 
   return (
     <main className="">
@@ -26,6 +27,9 @@ const Jobs = ({ jobs }: { jobs: Opportunity[] }) => {
             <option value="title"> Title </option>
             <option value="title"> Organization </option>
           </select>
+
+          <button onCanPlay={() => signOut}>Logout</button>
+
         </div>
       </div>
 

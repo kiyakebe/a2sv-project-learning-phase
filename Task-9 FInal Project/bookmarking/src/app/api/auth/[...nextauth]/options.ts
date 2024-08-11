@@ -34,8 +34,18 @@ export const authOptions = {
 
         // console.log("User from the login server: ", user);
 
-        if (user) {
-          return user.data;
+        if (user && user.data) {
+          return {
+            id: user.data.id,
+            accessToken: user.data.accessToken,
+            refreshToken: user.data.refreshToken,
+            name: user.data.name,
+            email: user.data.email,
+            role: user.data.role,
+            profileComplete: user.data.profileComplete,
+            message: user.data.message,
+            success: user.data.success,
+          };
         } else {
           return null;
         }
@@ -44,32 +54,21 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }: any) {
-      //   console.log(
-      //     "From user login singIn callback: ",
-      //     user,
-      //     account,
-      //     profile,
-      //     email,
-      //     credentials
-      //   );
       return true;
     },
     async jwt({ token, user }: any) {
-      //   console.log("From user login jwt callback: ", token, user);
-      token = { ...token, ...user };
-        console.log("From user login jwt callback: ", token, user);
-
+        // console.log("From user login jwt callback before modification: ", token, user);
+      if (user) {
+        token.accessToken = user.accessToken || "";
+        token.refreshToken = user.refreshToken || "";
+      }
+      // console.log("From user login jwt callback after modification: ", token, user);
       return token;
     },
     async session({ session, token }: any) {
-      session.user = {
-        // id: token.id,
-        accessToken: token.accessToken,
-        refreshToken: token.refreshToken,
-        // accessTokenExpires: token.accessTokenExpires,
-        // Add any additional user data you want to include
-      };
-      //   console.log("From user login session callback: ", session, token);
+      session.accessToken = token.accessToken;
+      session.refreshToken = token.refreshToken;
+      // console.log("From user login session callback after modification: ", session, token);
       return session;
     },
   },
