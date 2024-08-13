@@ -1,12 +1,12 @@
 
-# Authentication and Email Verification
+# Final Task - Bookmark Feature
 
-This repository contains an authentication system with email verification built using Next.js.
+This Project combines the previous projects in to one complete job searching platform. In addition the bookmarking feature is added to it.
 
-## Features
+## Adiional Features
 
-- **Email Verification Form**: Allows users to verify their email by entering an OTP code sent to their email.
-- **Authentication System**: Provides email/password authentication and Google OAuth using NextAuth.js.
+- **Bookmarking**: Allows users to bookmark job of their favourite.
+
 ## Installation and Setup
 
 ### Prerequisites
@@ -20,7 +20,7 @@ This repository contains an authentication system with email verification built 
 
    ```bash
    git https://github.com/kiyakebe/a2sv-project-learning-phase.git
-   cd "Task-8 user-authentication/user_authentication"
+   cd "Task-9 FInal Project/bookmarking"
    ```
 
 2. Install dependencies:
@@ -51,19 +51,22 @@ This repository contains an authentication system with email verification built 
 ## Demo Screenshot
 
 1. Landing page
-![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-8%20user-authentication/demo%20images/demo-1.png)
+![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-9%20FInal%20Project/demo%20images/demo-1.png)
 
 2. Signup Page
-![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-8%20user-authentication/demo%20images/demo-2.png)
+![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-9%20FInal%20Project/demo%20images/demo-2.png)
 
 3. Login Page
-![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-8%20user-authentication/demo%20images/demo-3.png)
+![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-9%20FInal%20Project/demo%20images/demo-3.png)
 
 4. Form Validation
-![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-8%20user-authentication/demo%20images/demo-4.png)
+![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-9%20FInal%20Project/demo%20images/demo-4.png)
 
 5. OTP verification
-![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-8%20user-authentication/demo%20images/demo-5.png)
+![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-9%20FInal%20Project/demo%20images/demo-5.png)
 
-6. Authenticated Page
-![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-8%20user-authentication/demo%20images/demo-6.png)
+6. Jobs Listing Page
+![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-9%20FInal%20Project/demo%20images/demo-6.png)
+
+6. Bookmarked jooblisting page
+![App Screenshot](https://github.com/kiyakebe/a2sv-project-learning-phase/blob/main/Task-9%20FInal%20Project/demo%20images/demo-7.png)
