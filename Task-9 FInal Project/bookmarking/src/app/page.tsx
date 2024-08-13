@@ -9,7 +9,7 @@ export default function Home() {
       </h1>
       <Link
         className="bg-violet-700 text-slate-50 p-3 px-5 my-5 rounded-md"
-        href="/jobs"
+        href="/api/auth/signin"
       >
         Get Started
       </Link>

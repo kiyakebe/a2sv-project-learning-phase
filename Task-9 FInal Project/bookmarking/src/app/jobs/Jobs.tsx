@@ -5,7 +5,7 @@ import { signOut } from "next-auth/react";
 
 const Jobs = ({ jobs }: { jobs: Opportunity[] }) => {
   const jobs_cnt = jobs.length;
-  console.log(jobs)
+  // console.log(jobs)
 
   return (
     <main className="">
@@ -28,8 +28,12 @@ const Jobs = ({ jobs }: { jobs: Opportunity[] }) => {
             <option value="title"> Organization </option>
           </select>
 
-          <button onCanPlay={() => signOut}>Logout</button>
-
+          <button
+            onClick={() => signOut()}
+            className="bg-violet-700 text-slate-50 p-2 ml-3 px-5 my-5 rounded-md"
+          >
+            Logout
+          </button>
         </div>
       </div>
 

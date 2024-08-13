@@ -23,18 +23,22 @@ export default page;
 export const loader = async () => {
   const session = await getServerSession(authOptions);
   const accessToken = await session?.accessToken;
-  console.log("Access token from jobs fetch: ", accessToken);
-  const response = await fetch(
-    "https://akil-backend.onrender.com/opportunities/search",
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  // console.log("Access token from jobs fetch: ", accessToken);
+  try {
+    const response = await fetch(
+      "https://akil-backend.onrender.com/opportunities/search",
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-  const data = await response.json();
+    const data = await response.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    throw new Error(error as string);
+  }
 };

@@ -41,15 +41,39 @@ const JobCard = ({
   const router = useRouter();
   const accessToken = session?.data?.accessToken;
 
-  axios.interceptors.request.use(
-    (config) => {
-      config.headers.Authorization = `Bearer ${accessToken}`;
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
+  const handleClick = async () => {
+    if (isBookmarked) {
+      try {
+        await axios.delete(
+          `https://akil-backend.onrender.com/bookmarks/${id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        await axios.post(
+          `https://akil-backend.onrender.com/bookmarks/${id}`,
+          {},
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
     }
-  );
+    router.refresh();
+  };
 
   return (
     <div className="flex border border-gray-400 p-10 w-3/4 rounded-3xl space-x-5 mx-auto my-8 bg-white">
@@ -75,27 +99,11 @@ const JobCard = ({
             </p>
           </Link>
           {isBookmarked ? (
-            <button
-              onClick={() => {
-                axios
-                  .delete(`https://akil-backend.onrender.com/bookmarks/${id}`)
-                  .then((res) => {
-                    router.refresh();
-                  });
-              }}
-            >
+            <button onClick={handleClick} data-id="unbookmark">
               <FontAwesomeIcon icon={unBookmark} />
             </button>
           ) : (
-            <button
-              onClick={() => {
-                axios
-                  .post(`https://akil-backend.onrender.com/bookmarks/${id}`)
-                  .then((res) => {
-                    router.refresh();
-                  });
-              }}
-            >
+            <button onClick={handleClick} data-id="bookmark">
               <FontAwesomeIcon icon={Bookmark} />
             </button>
           )}
